@@ -41,9 +41,12 @@ PrimesSieve::PrimesSieve(int limit) :
 
 void PrimesSieve::display_primes() const {
     // TODO: write code to display the primes in the format specified in the requirements document.
+
+    // Find neccessary info for primes per row
     const int max_prime_width = num_digits(max_prime_);
     const int primes_per_row = 80/(max_prime_width+1);
 
+    // Find the number of primes located in is_prime
     int numberofprimes = 0;
     for(int i = 0; i <= limit_; i++) {
         if(is_prime_[i] == true) {
@@ -54,12 +57,15 @@ void PrimesSieve::display_primes() const {
     cout<<"Number of primes found: " << numberofprimes << endl;
     cout<<"Primes up to " << limit_ << ":"<< endl;
 
-
+    // If the number of primes that exists is over the number of primes that should exist do the following code else,
     if(numberofprimes > primes_per_row) {
         int prime_count = 0;
+        // create bool to track if the number is the first number of the line
         bool firstnumber = true;
+
         for(int i = 0; i <= limit_; i++) {
             if(is_prime_[i] == true) {
+                // if its the first number do the appropriate spacing
                 if(firstnumber == true){
                     cout<< setw(max_prime_width) << i;
                     firstnumber = false;
@@ -94,12 +100,17 @@ void PrimesSieve::display_primes() const {
 void PrimesSieve::sieve() {
     // TODO: write sieve algorithm
     // All instance variables must be initialized by the end of this method.
+
+    // create values in is_prime and fill it with true
     for(int i = 0; i <= limit_; i++) {
         is_prime_[i] = true;
     }
+
+    // make 1 and 2 false
     is_prime_[0] = false;
     is_prime_[1] = false;
 
+    // program for sieve
     for(int i = 2; i <= sqrt(limit_); i++) {
         if(is_prime_[i] == true) {
             for(int j = pow(i, 2); j <= limit_; j += i) {
@@ -122,6 +133,8 @@ void PrimesSieve::sieve() {
 int PrimesSieve::num_digits(int num) {
     // TODO: write code to determine how many digits are in an integer
     // Hint: No strings are needed. Keep dividing by 10.
+
+    // iterate until you can no longer divide the num by 10
     int counter = 0;
     while(num > 0) {
         num /= 10;
