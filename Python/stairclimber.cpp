@@ -56,9 +56,6 @@ vector< vector<int> > get_ways(int num_stairs) {
 
 
 
-
-}
-
 void display_ways(const vector< vector<int> > &ways) {
     // TODO: Display the ways to climb stairs by iterating over
     // the vector of vectors and printing each combination.
@@ -80,7 +77,6 @@ void display_ways(const vector< vector<int> > &ways) {
     }
 }
 
-}
 
 int main(int argc, char * const argv[]) {
 
@@ -110,4 +106,3 @@ int main(int argc, char * const argv[]) {
     return 0;
 }
 
-}
